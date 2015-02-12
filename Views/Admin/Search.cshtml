@@ -1,0 +1,65 @@
+﻿@model Event.Models.EventData
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form id="f1">
+    <div class="col-md-8 col-md-push-4">
+        <input type="text" id="s1" />
+        <input type="button" id="b1" value="search" />
+        <p>        </p>
+        <p>     </p>
+        <div>
+            <label id="l1"></label>
+        <div></div>
+            <img id="i1" />
+            <div></div>
+                <label id="l2"></label>
+            <p>----</p>
+            <label id="l3"></label>
+
+        </div>
+        <div id="d1">
+
+     </div>
+    </div>
+</form>
+    <script type="text/javascript">
+    // alert('hello')
+
+    $(document).ready(function () {
+
+
+        $("#b1").on("click", function () {
+            var uName = $('#s1').val();
+            $('#d1').show();
+            // alert("aa gyaaaa");
+            $.getJSON("/Admin/SearchResult?name=" + uName, function (b) {
+               
+                //var j = JSON.parse(b);
+                //console.log(b);
+                var image = $('#i1');
+                $('#l1').text("NAME:" + b.Name);
+                image.attr('src', b.Path);
+                image.attr('width', 600);
+                image.attr('height', 200);
+                $('#l2').text("Date:" + b.Date);
+                $('#l3').text("Time:" + b.Time);
+                //$('#d1').append('<Label text=' + b.Name + '/>');
+                //$('#d1').append('<Label text=Date: />');
+                //$('#d1').append('<Label text=' + b.date + '/>');
+                //$('#d1').append('<Label text=Time: />');
+                //$('#d1').append('<Label text=' + b.time + '/>');
+                $(window).on('hashchange', updateImage);
+            });
+
+        });
+    });
+</script>
+
+    
+   
+
+</div>
+

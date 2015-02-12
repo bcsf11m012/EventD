@@ -1,0 +1,41 @@
+﻿@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div style="background-color:#21baba"></div>
+<div class="row">
+    @foreach (var e in Model)
+    {
+
+        <div class="col-md-8 col-md-push-4" style="background-color:#ca8484">
+            <h2 class="text-info">EventName: @e.Name</h2>
+            @{
+        MemoryStream ms = new MemoryStream(e.CoverImage);
+        System.Drawing.Image returnImage = System.Drawing.Image.FromStream(ms);
+        string name = Guid.NewGuid().ToString();
+        string physicalPath = Server.MapPath("~/Content/Images/" + name + ".jpg");
+        returnImage.Save(physicalPath, System.Drawing.Imaging.ImageFormat.Jpeg);
+
+
+            }
+
+
+            <img src="@("/Content/Images/"+name+".jpg")" width="600" height="200" alt="Hello" dir="auto" />
+
+            <h3 class="text-danger">Date: @e.Date</h3>
+            <h3 class="text-danger">Time: @e.Time</h3>
+            <h3 class="text-danger">Venue: @e.Venue</h3>
+            <p></p>
+            @*<div class="btn btn-success">
+                    @Html.ActionLink("Gallery", "ShowGall", "Gall");
+                </div>*@
+
+            <a href="/Gall/ShowGall/@e.EventId">Gallery</a>
+            <p style="background-color:white"></p>
+            <p></p>
+        </div>
+
+
+    }
+
+</div>

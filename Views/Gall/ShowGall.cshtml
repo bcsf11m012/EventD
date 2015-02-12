@@ -1,0 +1,55 @@
+﻿@model List<Event.Models.Gallery>
+
+
+@{
+
+    ViewBag.Title = "ShowGall";
+}
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form action="/Gall/AddGall/@ViewBag.Id" method="post" enctype="multipart/form-data">
+
+    <div class="row">
+        <div class="col-md-4 col-md-push-4">
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">Picture</span>
+                <input type="file" class="file-loading" data-upload-url="/site/file-upload" data-upload-async="true" data-max-file-count="10" name="cover">
+            </div>
+            <div class=" col-md-3 col-md-push-8">
+                <input type="submit" value="Add" />
+            </div>
+        </div>
+    </div>
+
+
+</form>
+<p></p>
+<p></p>
+
+@if(Model != null)
+{ 
+        <div class="row">
+            @foreach (var e in Model)
+{
+
+    <div class="col-md-8 col-md-push-4" >
+        @{
+            MemoryStream ms = new MemoryStream(e.Pic);
+            System.Drawing.Image returnImage = System.Drawing.Image.FromStream(ms);
+            string name = Guid.NewGuid().ToString();
+            string physicalPath = Server.MapPath("~/Content/Images/" + name + ".jpg");
+            returnImage.Save(physicalPath, System.Drawing.Imaging.ImageFormat.Jpeg);
+
+
+        }
+
+
+        <img  src="@("/Content/Images/"+name+".jpg")" width="300" height="300" alt="Hello" dir="auto" />
+
+    </div>
+                            <p></p>
+}
+            </div>
+}

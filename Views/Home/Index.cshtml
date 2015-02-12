@@ -1,0 +1,143 @@
+﻿@model Event.Models.UserData
+            
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/bootstrap-theme.min.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-7  col-md-push-1">
+                <h1>WELCOME! <span class="glyphicon glyphicon-globe"></span></h1>
+
+
+            </div>
+            <form id="signin-form">
+                <div class="col-md-3">
+                    <h3>SIGN IN</h3>
+                    <div class="input-group-btn">
+                        UserName<input type="text" class="form-control" placeholder="username" name="user" id="user" />
+                    </div>
+
+                    <p></p>
+                    
+                    <div class="input-group-btn">
+                        Password<input type="text" class="form-control" placeholder="password" name="pass" id="pass"/>
+                      
+                    </div>
+                      <input type="button" value="sign In" id="sig" />
+                 
+                    <div id="div1"> </div>
+                    <p></p>
+                    
+
+            </form>
+
+            <script type="text/javascript">
+                // alert('hello')
+
+                $(document).ready(function () {
+
+
+                    $("#sig").on("click", function () {
+                        var uName = $('#user').val();
+                        var pas = $("#pass").val();
+                        $.getJSON("/Home/Verify/json",{"user":uName , "pass":pas }, function (b) {
+
+                            if (b == 1) {
+                                location.href = "/Admin/Admin";
+                                //$("#signin-form").submit();
+                            }
+                            else if(b == 2){
+                                location.href = "/User/Home";
+                                //$("#signin-form").submit();
+                            }
+                            else
+                            {             
+                                $("#div1").text("Invalid username or password");   
+                            }
+                        });
+                    });
+                });
+            </script>
+
+
+
+            </div>
+        </div>
+       
+         <div class="row">
+            
+
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-7 col-md-push-1">
+
+            <h1>stay updated with events </h1>
+            <h3><span class="glyphicon glyphicon-calendar"></span> Get updates of events</h3>
+            <h3><span class="glyphicon glyphicon-film"></span> See gallery for events</h3>
+            <h3><span class="glyphicon glyphicon-upload"></span> Add events</h3>
+
+        </div>
+        <form action="/Home/SignUp" method="post">
+            <div class="col-md-3">
+                <h1>SIGN UP</h1>
+                <div class="input-group">
+                    @Html.Label("UserName", new { @class = "col-md-4", style = "font-size:large;margin-top:20px" })
+                    <span class="input-group-addon"></span>
+                    <input type="text"  placeholder="UserName" name="UserName" id="input1" /><input type="button" id="b1" value="Check" />
+
+                </div>
+                <div id="d1"></div>
+                <p></p>
+                
+                <script type="text/javascript">
+                    // alert('hello')
+
+                    $(document).ready(function () {
+                       
+                        $("#d1").show();
+                        $("#b1").on("click", function () {
+                            var uName = $('#input1').val();
+                            $.getJSON("/Home/Check?name="+uName, function (b) {
+                                
+                                //   $("#d1").hide();
+                                if (b == false) {
+                                    $("#d1").text("Valid username");
+                                }
+                                else {
+                                    $("#d1").text("InValid username");
+                                }
+                            });
+                        });
+                    });
+                </script>
+
+
+                <div class="input-group">
+                    @Html.Label("Password", new { @class = "col-md-4", style = "font-size:large;margin-top:20px" })
+                    <span class="input-group-addon"></span>
+                    <input type="text"  placeholder="Password" name="Password">
+                </div>
+                <p></p>
+              
+                    <input type="submit" value="SIgnUp" />
+             
+            </div>
+        </form>
+             </div>
+   
+
+    <script src="Scripts/bootstrap.min.js"></script>
+
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+</body>
+</html>
+

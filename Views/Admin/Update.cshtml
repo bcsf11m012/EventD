@@ -1,0 +1,47 @@
+﻿@model Event.Models.EventData
+@{
+    ViewBag.Title = "Update";
+}
+
+<h2>Update</h2>
+
+<form action="/Admin/UpdateSubmit/@Model.EventId" method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class=" col-md-4 col-md-push-3">
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">NAME</span>
+                <input type="text" class="form-control" placeholder="NAME" aria-describedby="basic-addon1" name="name" value="@Model.Name">
+            </div>
+            <p></p>
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">DATE</span>
+                <input type="text" class="form-control" placeholder="DATE" aria-describedby="basic-addon1" name="date" value="@Model.Date">
+            </div>
+            <p></p>
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">VENUE</span>
+                <input type="text" class="form-control" placeholder="VENUE" aria-describedby="basic-addon1" name="venue" value="@Model.Venue">
+            </div>
+            <p></p>
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">TIME</span>
+                <input type="text" class="form-control" placeholder="TIME" aria-describedby="basic-addon1" name="time" value="@Model.Time">
+            </div>
+            <p></p>
+
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">COVER IMAGE</span>
+                <input type="file" class="file-loading" data-upload-url="/site/file-upload" data-upload-async="true" data-max-file-count="10" name="cover" value="@Model.CoverImage">
+            </div>
+            <p></p>
+
+
+        </div>
+
+        <div class=" col-md-3 col-md-push-3">
+            <input type="submit" value="Update" />
+        </div>
+    </div>
+
+</form>
+

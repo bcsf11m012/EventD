@@ -1,0 +1,53 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@{
+    ViewBag.Title = "Add";
+}
+
+<form action="/Admin/AddSubmit" method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class=" col-md-4 col-md-push-3">
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">NAME</span>
+                <input type="text" class="form-control" placeholder="NAME" aria-describedby="basic-addon1" name="name">
+            </div>
+            <p></p>
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">DATE</span>
+                <input type="text" class="form-control" placeholder="dd/mm/yyyy" aria-describedby="basic-addon1" name="date">
+            </div>
+            <p></p>
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">VENUE</span>
+                <input type="text" class="form-control" placeholder="VENUE" aria-describedby="basic-addon1" name="venue">
+            </div>
+            <p></p>
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">TIME</span>
+                <input type="text" class="form-control" placeholder="TIME" aria-describedby="basic-addon1" name="time">
+            </div>
+            <p></p>
+
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">COVER IMAGE</span>
+                <input type="file" class="file-loading" data-upload-url="/site/file-upload" data-upload-async="true" data-max-file-count="10" name="cover">
+            </div>
+            <p></p>
+
+            <h2>GALLERY</h2>
+            <div class="input-group">
+                <input type="file" multiple="multiple" class="file-loading" data-upload-url="/site/file-upload" data-upload-async="true" data-max-file-count="10" name="pic">
+            </div>
+
+        </div>
+
+        <div class=" col-md-3 col-md-push-3">
+            <input type="submit" value="Add" />
+        </div>
+    </div>
+
+</form>
+
+
